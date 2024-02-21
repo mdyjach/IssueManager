@@ -1,10 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Net.Http.Json;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace IssueManagerLibrary
 {
@@ -84,7 +79,6 @@ namespace IssueManagerLibrary
             }
         }
 
-
         public override async Task CloseIssue(string issueId)
         {
             try
@@ -119,7 +113,6 @@ namespace IssueManagerLibrary
             }
         }
 
-
         public override async Task ExportIssuesToFile(string issueId, string filePath)
         {
             try
@@ -136,7 +129,6 @@ namespace IssueManagerLibrary
                 {
                     var issueJson = await response.Content.ReadAsStringAsync();
 
-                    // Write issue JSON data to a file
                     await File.WriteAllTextAsync(filePath, issueJson);
 
                     Console.WriteLine($"Issue {issueId} exported to file: {filePath}");
@@ -156,18 +148,14 @@ namespace IssueManagerLibrary
             }
         }
 
-
         public override async Task ImportIssuesFromFile(string filePath)
         {
             try
             {
-                // Read issue data from the file
                 var issueJson = await File.ReadAllTextAsync(filePath);
 
-                // Deserialize JSON data to an object
                 var issueData = JsonConvert.DeserializeObject<IssueData>(issueJson);
 
-                // Construct the request body
                 var jsonData = new
                 {
                     title = issueData.Title,
@@ -176,7 +164,6 @@ namespace IssueManagerLibrary
 
                 var content = new StringContent(JsonConvert.SerializeObject(jsonData), Encoding.UTF8, "application/json");
 
-                // Send a POST request to create the issue
                 var request = new HttpRequestMessage(HttpMethod.Post, _repositoryUrl);
                 request.Headers.Add("Authorization", $"token {_accessToken}");
                 request.Headers.Add("User-Agent", "IssueManagerConsoleApp");
