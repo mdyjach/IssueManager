@@ -1,38 +1,4 @@
 ﻿using IssueManagerLibrary;
-using System;
-
-//GitService gitService = null;
-
-//gitHub
-/*string gitHubRepositoryUrl = GitHubService.GetRepositoryUrl("mdyjach", "Test");
-string gitHubAccessToken = "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";
-
-var gitHubHttpClient = new HttpClient();
-gitHubHttpClient.BaseAddress = new Uri(gitHubRepositoryUrl);
-
-gitService = new GitHubService(gitHubHttpClient, gitHubRepositoryUrl, gitHubAccessToken);
-
-await gitService.AddNewIssue("test", "abc");
-await gitService.ModifyIssue("2", "test10", "descr");
-await gitService.CloseIssue("10");
-await gitService.ExportIssuesToFile("9", @"D:\test");
-await gitService.ImportIssuesFromFile(@"D:\test");*/
-
-//gitLab
-/*string gitLabRepositoryUrl = GitLabService.GetRepositoryUrl("test7151008", "TestProject");
-string gitLabAccessToken = "glpat--zbUrLcsSsWRCroDsty6";
-
-var gitLabHttpClient = new HttpClient();
-gitLabHttpClient.BaseAddress = new Uri(gitLabRepositoryUrl);
-
-gitService = new GitLabService(gitLabHttpClient, gitLabRepositoryUrl, gitLabAccessToken);
-
-await gitService.AddNewIssue("test1", "abc");
-await gitService.ModifyIssue("2", "a", "b");
-await gitService.CloseIssue("2");
-await gitService.ExportIssuesToFile("1", @"D:\test.json");
-await gitService.ImportIssuesFromFile(@"D:\test.json");*/
-
 
 Console.WriteLine("Welcome to Git Service Console Interface!");
 

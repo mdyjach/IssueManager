@@ -157,7 +157,6 @@ public class GitLabService : GitService
             {
                 title = issueData.Title,
                 description = issueData.Description
-                // Add other necessary properties from the issueData object
             };
 
             var content = new StringContent(JsonConvert.SerializeObject(jsonData), Encoding.UTF8, "application/json");
