@@ -58,7 +58,7 @@ namespace IssueManagerConsoleApp
                 { GitServiceProvider.GitLab, (username, project) => GitLabService.GetRepositoryUrl(username, project) }
             };
 
-            string providerName = provider == GitServiceProvider.GitHub ? "GitHub" : "GitLab";
+            string providerName = provider.ToString();
 
             Console.Write($"Enter {providerName} username or group name: ");
             string usernameOrGroupName = Console.ReadLine();
