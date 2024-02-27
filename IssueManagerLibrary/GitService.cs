@@ -19,15 +19,15 @@ namespace IssueManagerLibrary
             _accessToken = accessToken;
         }
 
-        public abstract Task AddNewIssue(string name, string description);
+        public abstract Task AddNewIssue(string name, string description, Action<string> onSuccess, Action<string> onFailure);
 
-        public abstract Task ModifyIssue(string issueId, string newName, string newDescription);
+        public abstract Task ModifyIssue(string issueId, string newName, string newDescription, Action<string> onSuccess, Action<string> onFailure);
 
-        public abstract Task CloseIssue(string issueId);
+        public abstract Task CloseIssue(string issueId, Action<string> onSuccess, Action<string> onFailure);
+            
+        public abstract Task ExportIssuesToFile(string issueId, string filePath, Action<string> onSuccess, Action<string> onFailure);
 
-        public abstract Task ExportIssuesToFile(string issueId, string filePath);
-
-        public abstract Task ImportIssuesFromFile(string filePath);
+        public abstract Task ImportIssuesFromFile(string filePath, Action<string> onSuccess, Action<string> onFailure);
       
     }
 }

@@ -2,15 +2,15 @@
 
 namespace IssueManagerConsoleApp.IssueOperation
 {
-    class ExportIssuesOperation : IOperation
+    class ExportIssuesOperation(Action<string> onSuccess, Action<string> onFailure) : IssueOperation(onSuccess, onFailure)
     {
-        public async Task Execute(GitService gitService)
+        public override async Task Execute(GitService gitService)
         {
             Console.Write("Enter issue ID to export: ");
             string issueIdToExport = Console.ReadLine();
             Console.Write("Enter file path to export to: ");
             string exportFilePath = Console.ReadLine();
-            await gitService.ExportIssuesToFile(issueIdToExport, exportFilePath);
+            await gitService.ExportIssuesToFile(issueIdToExport, exportFilePath, _onSuccess, _onFailure);
         }
     }
 }

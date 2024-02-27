@@ -12,7 +12,7 @@ namespace IssueManagerLibrary
             return $"https://api.github.com/repos/{owner}/{repo}/issues";
         }
 
-        public override async Task AddNewIssue(string name, string description)
+        public override async Task AddNewIssue(string name, string description, Action<string> onSuccess, Action<string> onFailure)
         {
             try
             {
@@ -31,20 +31,20 @@ namespace IssueManagerLibrary
                 var response = await _httpClient.SendAsync(request);
                 if (response.IsSuccessStatusCode)
                 {
-                    Console.WriteLine("Issue added successfully.");
+                    onSuccess?.Invoke("Issue added successfully.");
                 }
                 else
                 {
-                    Console.WriteLine($"Failed to add new issue. Status code: {response.StatusCode}");
+                    onFailure?.Invoke($"Failed to add new issue. Status code: {response.StatusCode}");
                 }
             }
             catch (HttpRequestException ex)
             {
-                Console.WriteLine($"Error adding new issue on GitHub: {ex.Message}");
+                onFailure?.Invoke($"Error adding new issue on GitHub: {ex.Message}");
             }
         }
 
-        public override async Task ModifyIssue(string issueId, string newName, string newDescription)
+        public override async Task ModifyIssue(string issueId, string newName, string newDescription, Action<string> onSuccess, Action<string> onFailure)
         {
             try
             {
@@ -66,20 +66,21 @@ namespace IssueManagerLibrary
 
                 if (response.IsSuccessStatusCode)
                 {
-                    Console.WriteLine($"Issue {issueId} modified successfully.");
+                    onSuccess?.Invoke($"Issue {issueId} modified successfully.");
                 }
                 else
                 {
-                    Console.WriteLine($"Failed to modify issue {issueId}. Status code: {response.StatusCode}");
+                    onFailure?.Invoke($"Failed to modify issue {issueId}. Status code: {response.StatusCode}");
                 }
             }
             catch (HttpRequestException ex)
             {
-                Console.WriteLine($"Error occurred while modifying issue: {ex.Message}");
+                onFailure?.Invoke($"Error occurred while modifying issue: {ex.Message}");
             }
         }
 
-        public override async Task CloseIssue(string issueId)
+
+        public override async Task CloseIssue(string issueId, Action<string> onSuccess, Action<string> onFailure)
         {
             try
             {
@@ -100,20 +101,21 @@ namespace IssueManagerLibrary
 
                 if (response.IsSuccessStatusCode)
                 {
-                    Console.WriteLine($"Issue {issueId} closed successfully.");
+                    onSuccess?.Invoke($"Issue {issueId} closed successfully.");
                 }
                 else
                 {
-                    Console.WriteLine($"Failed to close issue {issueId}. Status code: {response.StatusCode}");
+                    onFailure?.Invoke($"Failed to close issue {issueId}. Status code: {response.StatusCode}");
                 }
             }
             catch (HttpRequestException ex)
             {
-                Console.WriteLine($"Error occurred while closing issue: {ex.Message}");
+                onFailure?.Invoke($"Error occurred while closing issue: {ex.Message}");
             }
         }
 
-        public override async Task ExportIssuesToFile(string issueId, string filePath)
+
+        public override async Task ExportIssuesToFile(string issueId, string filePath, Action<string> onSuccess, Action<string> onFailure)
         {
             try
             {
@@ -131,24 +133,24 @@ namespace IssueManagerLibrary
 
                     await File.WriteAllTextAsync(filePath, issueJson);
 
-                    Console.WriteLine($"Issue {issueId} exported to file: {filePath}");
+                    onSuccess?.Invoke($"Issue {issueId} exported to file: {filePath}");
                 }
                 else
                 {
-                    Console.WriteLine($"Failed to export issue {issueId}. Status code: {response.StatusCode}");
+                    onFailure?.Invoke($"Failed to export issue {issueId}. Status code: {response.StatusCode}");
                 }
             }
             catch (HttpRequestException ex)
             {
-                Console.WriteLine($"Error occurred while exporting issue: {ex.Message}");
+                onFailure?.Invoke($"Error occurred while exporting issue: {ex.Message}");
             }
             catch (IOException ex)
             {
-                Console.WriteLine($"Error occurred while writing to file: {ex.Message}");
+                onFailure?.Invoke($"Error occurred while writing to file: {ex.Message}");
             }
         }
 
-        public override async Task ImportIssuesFromFile(string filePath)
+        public override async Task ImportIssuesFromFile(string filePath, Action<string> onSuccess, Action<string> onFailure)
         {
             try
             {
@@ -174,25 +176,26 @@ namespace IssueManagerLibrary
 
                 if (response.IsSuccessStatusCode)
                 {
-                    Console.WriteLine("Issue imported successfully.");
+                    onSuccess?.Invoke("Issue imported successfully.");
                 }
                 else
                 {
-                    Console.WriteLine($"Failed to import issue. Status code: {response.StatusCode}");
+                    onFailure?.Invoke($"Failed to import issue. Status code: {response.StatusCode}");
                 }
             }
             catch (HttpRequestException ex)
             {
-                Console.WriteLine($"Error occurred while importing issue: {ex.Message}");
+                onFailure?.Invoke($"Error occurred while importing issue: {ex.Message}");
             }
             catch (IOException ex)
             {
-                Console.WriteLine($"Error occurred while reading file: {ex.Message}");
+                onFailure?.Invoke($"Error occurred while reading file: {ex.Message}");
             }
             catch (JsonException ex)
             {
-                Console.WriteLine($"Error occurred while deserializing JSON: {ex.Message}");
+                onFailure?.Invoke($"Error occurred while deserializing JSON: {ex.Message}");
             }
         }
+
     }
 }

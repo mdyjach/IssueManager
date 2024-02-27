@@ -1,8 +1,5 @@
 ﻿using IssueManagerConsoleApp.IssueOperation;
 using IssueManagerLibrary;
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace IssueManagerConsoleApp
 {
@@ -93,19 +90,19 @@ namespace IssueManagerConsoleApp
                 switch (operationChoice)
                 {
                     case "1":
-                        await ExecuteOperation(gitService, new AddIssueOperation());
+                        await ExecuteOperation(gitService, new AddIssueOperation(OnSuccess, OnFailure));
                         break;
                     case "2":
-                        await ExecuteOperation(gitService, new ModifyIssueOperation());
+                        await ExecuteOperation(gitService, new ModifyIssueOperation(OnSuccess, OnFailure));
                         break;
                     case "3":
-                        await ExecuteOperation(gitService, new CloseIssueOperation());
+                        await ExecuteOperation(gitService, new CloseIssueOperation(OnSuccess, OnFailure));
                         break;
                     case "4":
-                        await ExecuteOperation(gitService, new ExportIssuesOperation());
+                        await ExecuteOperation(gitService, new ExportIssuesOperation(OnSuccess, OnFailure));
                         break;
                     case "5":
-                        await ExecuteOperation(gitService, new ImportIssuesOperation());
+                        await ExecuteOperation(gitService, new ImportIssuesOperation(OnSuccess, OnFailure));
                         break;
                     case "6":
                         Environment.Exit(0);
@@ -120,6 +117,16 @@ namespace IssueManagerConsoleApp
         static async Task ExecuteOperation(GitService gitService, IOperation operation)
         {
             await operation.Execute(gitService);
+        }
+
+        static void OnSuccess(string message)
+        {
+            Console.WriteLine($"Success: {message}");
+        }
+
+        static void OnFailure(string message)
+        {
+            Console.WriteLine($"Failure: {message}");
         }
     }
 }
