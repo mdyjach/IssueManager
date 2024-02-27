@@ -1,14 +1,13 @@
-using System;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using IssueManagerLibrary;
+﻿using IssueManagerLibrary;
 using IssueManagerWinFormsApp.IssueOperation;
+
 
 namespace IssueManagerWinFormsApp
 {
     public partial class MainForm : Form
     {
         private GitService _gitService;
+        private ServiceSetupForm _serviceSetupForm; 
 
         public MainForm()
         {
@@ -17,35 +16,70 @@ namespace IssueManagerWinFormsApp
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            //ShowServiceSetupForm();
-            EnableAddIssueControls(false);
-            EnableModifyIssueControls(false);
-            EnableCloseIssueControls(false);
-            EnableExportIssueControls(false);
-            EnableImportIssueControls(false);
+            _serviceSetupForm = new ServiceSetupForm();
+            CreateService();
+            EnableAddIssueButton(false);
+            EnableModifyIssueButton(false);
+            EnableCloseIssueButton(false);
+            EnableExportIssueButton(false);
+            EnableImportIssueButton(false);
         }
+
+        private bool CreateService()
+        {
+            try
+            {
+                ServiceParameters parameters;
+                //bool readed = ServiceParameters.ReadParametersFromFile(@"D:\confGitHub.json", out parameters);
+                bool readed = ServiceParameters.ReadParametersFromFile(@"D:\confGitLab.json", out parameters);
+
+                if (readed && parameters != null)
+                {
+
+                    HttpClient httpClient = new HttpClient();
+                    string repositoryUrl = GitServiceProviderHelper.GetRepositoryUrl(parameters.GtService, parameters.User, parameters.Repo);
+                    httpClient.BaseAddress = new Uri(repositoryUrl);
+
+                    GitServiceFactory gitServiceFactory = new GitServiceFactory();
+                    _gitService = gitServiceFactory.CreateGitService(parameters.GtService, httpClient, parameters.User, parameters.Repo, parameters.Token);
+
+                    _serviceSetupForm.SetcomboBoxService(parameters.GtService);
+                    _serviceSetupForm.SetTextBoxUsername(parameters.User);
+                    _serviceSetupForm.SetTextBoxProjectName(parameters.Repo);
+                    _serviceSetupForm.SetTextBoxAccessToken(parameters.Token);
+            }
+                else
+                {
+                    ShowServiceSetupForm();
+                }
+
+                return readed;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error reading parameters: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
 
         private void ShowServiceSetupForm()
         {
-            using (var serviceSetupForm = new ServiceSetupForm())
+            if (_serviceSetupForm.ShowDialog() == DialogResult.OK)
             {
-                if (serviceSetupForm.ShowDialog() == DialogResult.OK)
-                {
-                    _gitService = serviceSetupForm.GitService;
-                    this.Visible = true;
-                }
-                else
-                {
-                    Application.Exit();
-                }
+                _gitService =  _serviceSetupForm.GitService;
+                this.Visible = true;
+            }
+            else
+            {
+                Application.Exit();
             }
         }
 
         private void serviceSetupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ServiceSetupForm serviceSetupForm = new ServiceSetupForm();
-            serviceSetupForm.ShowDialog();
-            _gitService = serviceSetupForm.GitService;
+            _serviceSetupForm.ShowDialog();
+            _gitService = _serviceSetupForm.GitService;
         }
 
         private async Task ExecuteOperation(IOperation operation)
@@ -84,14 +118,21 @@ namespace IssueManagerWinFormsApp
 
         #region AddIssue
 
-        public void EnableAddIssueControls(bool enable)
+        public void EnableAddIssueButton(bool enable)
         {
             buttonAddIssue.Enabled = enable;
         }
 
+        public void EnableAddIssueControls(bool enable)
+        {
+            buttonAddIssue.Enabled = enable;
+            textBoxIssueTitle.Enabled = enable;
+            textBoxIssueDescription.Enabled = enable;
+        }
+
         private void textBoxAddIssueId_Changed(object sender, EventArgs e)
         {
-            EnableAddIssueControls(!string.IsNullOrWhiteSpace(textBoxIssueTitle.Text));
+            EnableAddIssueButton(!string.IsNullOrWhiteSpace(textBoxIssueTitle.Text));
         }
 
         private async void buttonAddIssue_Click(object sender, EventArgs e)
@@ -113,14 +154,22 @@ namespace IssueManagerWinFormsApp
 
         #region ModifyIssue
 
-        public void EnableModifyIssueControls(bool enable)
+        public void EnableModifyIssueButton(bool enable)
         {
             buttonModifyIssue.Enabled = enable;
         }
 
+        public void EnableModifyIssueControls(bool enable)
+        {
+            buttonModifyIssue.Enabled = enable;
+            textBoxModifyIssueId.Enabled = enable;
+            textBoxNewIssueTitle.Enabled = enable;
+            textBoxNewIssueDescription.Enabled = enable;
+        }
+
         private void textBoxModifyIssueId_Changed(object sender, EventArgs e)
         {
-            EnableModifyIssueControls(!string.IsNullOrWhiteSpace(textBoxModifyIssueId.Text) && !string.IsNullOrWhiteSpace(textBoxNewIssueTitle.Text));
+            EnableModifyIssueButton(!string.IsNullOrWhiteSpace(textBoxModifyIssueId.Text) && !string.IsNullOrWhiteSpace(textBoxNewIssueTitle.Text));
         }
 
         private async void buttonModifyIssue_Click(object sender, EventArgs e)
@@ -147,14 +196,20 @@ namespace IssueManagerWinFormsApp
 
         #region CloseIssue
 
-        public void EnableCloseIssueControls(bool enable)
+        public void EnableCloseIssueButton(bool enable)
         {
             buttonCloseIssue.Enabled = enable;
         }
 
+        public void EnableCloseIssueControls(bool enable)
+        {
+            buttonCloseIssue.Enabled = enable;
+            textBoxCloseIssueId.Enabled = enable;
+        }
+
         private void textBoxCloseIssueId_Changed(object sender, EventArgs e)
         {
-            EnableCloseIssueControls(!string.IsNullOrWhiteSpace(textBoxCloseIssueId.Text));
+            EnableCloseIssueButton(!string.IsNullOrWhiteSpace(textBoxCloseIssueId.Text));
         }
 
         private async void buttonCloseIssue_Click(object sender, EventArgs e)
@@ -171,14 +226,22 @@ namespace IssueManagerWinFormsApp
 
         #region ExportIssue
 
-        public void EnableExportIssueControls(bool enable)
+        public void EnableExportIssueButton(bool enable)
         {
             buttonExportIssue.Enabled = enable;
         }
 
+        public void EnableExportIssueControls(bool enable)
+        {
+            buttonExportIssue.Enabled = enable;
+            textBoxExportIssueId.Enabled = enable;
+            textBoxExportFilePath.Enabled = enable;
+            buttonBrowseExportFilePath.Enabled = enable;
+        }
+
         private void textBoxExportControls_Changed(object sender, EventArgs e)
         {
-            EnableExportIssueControls(!string.IsNullOrWhiteSpace(textBoxExportIssueId.Text) && !string.IsNullOrWhiteSpace(textBoxExportFilePath.Text));
+            EnableExportIssueButton(!string.IsNullOrWhiteSpace(textBoxExportIssueId.Text) && !string.IsNullOrWhiteSpace(textBoxExportFilePath.Text));
         }
 
         private void buttonBrowseExportFilePath_Click(object sender, EventArgs e)
@@ -223,14 +286,21 @@ namespace IssueManagerWinFormsApp
 
         #region ImportIssue
 
-        public void EnableImportIssueControls(bool enable)
+        public void EnableImportIssueButton(bool enable)
         {
             buttonImportIssues.Enabled = enable;
         }
 
+        public void EnableImportIssueControls(bool enable)
+        {
+            buttonImportIssues.Enabled = enable;
+            textBoxImportFilePath.Enabled = enable;
+            buttonBrowseImportFilePath.Enabled = enable;
+        }
+
         private void textBoxImportFilePath_Changed(object sender, EventArgs e)
         {
-            EnableImportIssueControls(!string.IsNullOrWhiteSpace(textBoxImportFilePath.Text));
+            EnableImportIssueButton(!string.IsNullOrWhiteSpace(textBoxImportFilePath.Text));
         }
 
         private void buttonBrowseImportFilePath_Click(object sender, EventArgs e)

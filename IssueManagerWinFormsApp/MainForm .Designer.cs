@@ -7,41 +7,9 @@ namespace IssueManagerWinFormsApp
     partial class MainForm
     {
         private System.ComponentModel.IContainer components = null;
-
-        private MenuStrip menuStrip1;
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem serviceSetupToolStripMenuItem;
-        private TabControl tabControlMain;
-        private TabPage tabPageAddIssue;
-        private Label labelDescription;
-        private Button buttonAddIssue;
-        private TextBox textBoxIssueDescription;
-        private TextBox textBoxIssueTitle;
-        private Label labelTitle;
-        private TabPage tabPageModifyIssue;
-        private TextBox textBoxModifyIssueId;
-        private Label labelModifyIssueId;
-        private Label labelNewIssueDescription;
-        private Label labelNewIssueTitle;
-        private Button buttonModifyIssue;
-        private TextBox textBoxNewIssueDescription;
-        private TextBox textBoxNewIssueTitle;
-        private TabPage tabPageCloseIssue;
-        private Button buttonCloseIssue;
-        private TextBox textBoxCloseIssueId;
-        private Label labelCloseIssueId;
-        private TabPage tabPageExportIssues;
-        private Label labelExportIssueId;
-        private Label labelExportFilePath;
-        private TextBox textBoxExportIssueId;
-        private TextBox textBoxExportFilePath;
-        private Button buttonBrowseExportFilePath;
-        private Button buttonExportIssue;
-        private TabPage tabPageImportIssues;
-        private Label labelImportFilePath;
-        private TextBox textBoxImportFilePath;
-        private Button buttonBrowseImportFilePath;
-        private Button buttonImportIssues;
+        private MenuStrip menuStrip1;
 
         protected override void Dispose(bool disposing)
         {
@@ -54,9 +22,9 @@ namespace IssueManagerWinFormsApp
 
         private void InitializeComponent()
         {
-            menuStrip1 = new MenuStrip();
-            fileToolStripMenuItem  = new ToolStripMenuItem();
+            fileToolStripMenuItem = new ToolStripMenuItem();
             serviceSetupToolStripMenuItem = new ToolStripMenuItem();
+            menuStrip1 = new MenuStrip();
             tabControlMain = new TabControl();
             tabPageAddIssue = new TabPage();
             labelDescription = new Label();
@@ -66,12 +34,12 @@ namespace IssueManagerWinFormsApp
             labelTitle = new Label();
             tabPageModifyIssue = new TabPage();
             textBoxModifyIssueId = new TextBox();
+            textBoxNewIssueDescription = new TextBox();
+            textBoxNewIssueTitle = new TextBox();
             labelModifyIssueId = new Label();
             labelNewIssueDescription = new Label();
             labelNewIssueTitle = new Label();
             buttonModifyIssue = new Button();
-            textBoxNewIssueDescription = new TextBox();
-            textBoxNewIssueTitle = new TextBox();
             tabPageCloseIssue = new TabPage();
             buttonCloseIssue = new Button();
             textBoxCloseIssueId = new TextBox();
@@ -88,50 +56,37 @@ namespace IssueManagerWinFormsApp
             textBoxImportFilePath = new TextBox();
             buttonBrowseImportFilePath = new Button();
             buttonImportIssues = new Button();
+            menuStrip1.SuspendLayout();
             tabControlMain.SuspendLayout();
             tabPageAddIssue.SuspendLayout();
             tabPageModifyIssue.SuspendLayout();
             tabPageCloseIssue.SuspendLayout();
             tabPageExportIssues.SuspendLayout();
             tabPageImportIssues.SuspendLayout();
-            menuStrip1.SuspendLayout();
             SuspendLayout();
-            // 
-            // menuStrip1
-            // 
-            menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            fileToolStripMenuItem}); // Dodano nowe ToolStripMenuItem do MenuStrip
-            menuStrip1.Location = new System.Drawing.Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new System.Drawing.Size(800, 24);
-            menuStrip1.TabIndex = 0;
-            menuStrip1.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
-            fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {serviceSetupToolStripMenuItem}); 
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { serviceSetupToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            fileToolStripMenuItem.Size = new Size(37, 20);
             fileToolStripMenuItem.Text = "File";
             // 
             // serviceSetupToolStripMenuItem
             // 
             serviceSetupToolStripMenuItem.Name = "serviceSetupToolStripMenuItem";
-            serviceSetupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            serviceSetupToolStripMenuItem.Size = new Size(180, 22);
             serviceSetupToolStripMenuItem.Text = "Service Setup";
-            serviceSetupToolStripMenuItem.Click += new System.EventHandler(serviceSetupToolStripMenuItem_Click);
+            serviceSetupToolStripMenuItem.Click += serviceSetupToolStripMenuItem_Click;
             // 
-            // ServiceSetupForm
+            // menuStrip1
             // 
-            ClientSize = new System.Drawing.Size(800, 450);
-            Controls.Add(menuStrip1);
-            MainMenuStrip = menuStrip1;
-            Name = "ServiceSetupForm";
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
-            ResumeLayout(false);
-            PerformLayout();
-
+            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(488, 24);
+            menuStrip1.TabIndex = 0;
+            menuStrip1.Text = "menuStrip1";
             // 
             // tabControlMain
             // 
@@ -141,11 +96,11 @@ namespace IssueManagerWinFormsApp
             tabControlMain.Controls.Add(tabPageExportIssues);
             tabControlMain.Controls.Add(tabPageImportIssues);
             tabControlMain.Dock = DockStyle.Fill;
-            tabControlMain.Location = new Point(0, 0);
+            tabControlMain.Location = new Point(0, 24);
             tabControlMain.Name = "tabControlMain";
             tabControlMain.SelectedIndex = 0;
-            tabControlMain.Size = new Size(488, 350);
-            tabControlMain.TabIndex = 0;
+            tabControlMain.Size = new Size(488, 348);
+            tabControlMain.TabIndex = 1;
             // 
             // tabPageAddIssue
             // 
@@ -157,7 +112,7 @@ namespace IssueManagerWinFormsApp
             tabPageAddIssue.Location = new Point(4, 24);
             tabPageAddIssue.Name = "tabPageAddIssue";
             tabPageAddIssue.Padding = new Padding(3);
-            tabPageAddIssue.Size = new Size(452, 322);
+            tabPageAddIssue.Size = new Size(480, 298);
             tabPageAddIssue.TabIndex = 0;
             tabPageAddIssue.Text = "Add Issue";
             tabPageAddIssue.UseVisualStyleBackColor = true;
@@ -165,7 +120,7 @@ namespace IssueManagerWinFormsApp
             // labelDescription
             // 
             labelDescription.AutoSize = true;
-            labelDescription.Location = new Point(6, 59);
+            labelDescription.Location = new Point(9, 62);
             labelDescription.Name = "labelDescription";
             labelDescription.Size = new Size(70, 15);
             labelDescription.TabIndex = 5;
@@ -200,7 +155,7 @@ namespace IssueManagerWinFormsApp
             // labelTitle
             // 
             labelTitle.AutoSize = true;
-            labelTitle.Location = new Point(8, 22);
+            labelTitle.Location = new Point(11, 25);
             labelTitle.Name = "labelTitle";
             labelTitle.Size = new Size(32, 15);
             labelTitle.TabIndex = 0;
@@ -209,16 +164,16 @@ namespace IssueManagerWinFormsApp
             // tabPageModifyIssue
             // 
             tabPageModifyIssue.Controls.Add(textBoxModifyIssueId);
+            tabPageModifyIssue.Controls.Add(textBoxNewIssueDescription);
+            tabPageModifyIssue.Controls.Add(textBoxNewIssueTitle);
             tabPageModifyIssue.Controls.Add(labelModifyIssueId);
             tabPageModifyIssue.Controls.Add(labelNewIssueDescription);
             tabPageModifyIssue.Controls.Add(labelNewIssueTitle);
             tabPageModifyIssue.Controls.Add(buttonModifyIssue);
-            tabPageModifyIssue.Controls.Add(textBoxNewIssueDescription);
-            tabPageModifyIssue.Controls.Add(textBoxNewIssueTitle);
             tabPageModifyIssue.Location = new Point(4, 24);
             tabPageModifyIssue.Name = "tabPageModifyIssue";
             tabPageModifyIssue.Padding = new Padding(3);
-            tabPageModifyIssue.Size = new Size(452, 322);
+            tabPageModifyIssue.Size = new Size(480, 320);
             tabPageModifyIssue.TabIndex = 1;
             tabPageModifyIssue.Text = "Modify Issue";
             tabPageModifyIssue.UseVisualStyleBackColor = true;
@@ -230,43 +185,6 @@ namespace IssueManagerWinFormsApp
             textBoxModifyIssueId.Size = new Size(287, 23);
             textBoxModifyIssueId.TabIndex = 4;
             textBoxModifyIssueId.TextChanged += textBoxModifyIssueId_Changed;
-            // 
-            // labelModifyIssueId
-            // 
-            labelModifyIssueId.AutoSize = true;
-            labelModifyIssueId.Location = new Point(8, 13);
-            labelModifyIssueId.Name = "labelModifyIssueId";
-            labelModifyIssueId.Size = new Size(50, 15);
-            labelModifyIssueId.TabIndex = 5;
-            labelModifyIssueId.Text = "Issue ID:";
-            // 
-            // labelNewIssueDescription
-            // 
-            labelNewIssueDescription.AutoSize = true;
-            labelNewIssueDescription.Location = new Point(8, 83);
-            labelNewIssueDescription.Name = "labelNewIssueDescription";
-            labelNewIssueDescription.Size = new Size(70, 15);
-            labelNewIssueDescription.TabIndex = 4;
-            labelNewIssueDescription.Text = "Description:";
-            // 
-            // labelNewIssueTitle
-            // 
-            labelNewIssueTitle.AutoSize = true;
-            labelNewIssueTitle.Location = new Point(8, 46);
-            labelNewIssueTitle.Name = "labelNewIssueTitle";
-            labelNewIssueTitle.Size = new Size(32, 15);
-            labelNewIssueTitle.TabIndex = 0;
-            labelNewIssueTitle.Text = "Title:";
-            // 
-            // buttonModifyIssue
-            // 
-            buttonModifyIssue.Location = new Point(150, 278);
-            buttonModifyIssue.Name = "buttonModifyIssue";
-            buttonModifyIssue.Size = new Size(75, 23);
-            buttonModifyIssue.TabIndex = 3;
-            buttonModifyIssue.Text = "Modify Issue";
-            buttonModifyIssue.UseVisualStyleBackColor = true;
-            buttonModifyIssue.Click += buttonModifyIssue_Click;
             // 
             // textBoxNewIssueDescription
             // 
@@ -284,6 +202,43 @@ namespace IssueManagerWinFormsApp
             textBoxNewIssueTitle.TabIndex = 1;
             textBoxNewIssueTitle.TextChanged += textBoxModifyIssueId_Changed;
             // 
+            // labelModifyIssueId
+            // 
+            labelModifyIssueId.AutoSize = true;
+            labelModifyIssueId.Location = new Point(11, 16);
+            labelModifyIssueId.Name = "labelModifyIssueId";
+            labelModifyIssueId.Size = new Size(50, 15);
+            labelModifyIssueId.TabIndex = 5;
+            labelModifyIssueId.Text = "Issue ID:";
+            // 
+            // labelNewIssueDescription
+            // 
+            labelNewIssueDescription.AutoSize = true;
+            labelNewIssueDescription.Location = new Point(11, 86);
+            labelNewIssueDescription.Name = "labelNewIssueDescription";
+            labelNewIssueDescription.Size = new Size(70, 15);
+            labelNewIssueDescription.TabIndex = 4;
+            labelNewIssueDescription.Text = "Description:";
+            // 
+            // labelNewIssueTitle
+            // 
+            labelNewIssueTitle.AutoSize = true;
+            labelNewIssueTitle.Location = new Point(11, 49);
+            labelNewIssueTitle.Name = "labelNewIssueTitle";
+            labelNewIssueTitle.Size = new Size(32, 15);
+            labelNewIssueTitle.TabIndex = 0;
+            labelNewIssueTitle.Text = "Title:";
+            // 
+            // buttonModifyIssue
+            // 
+            buttonModifyIssue.Location = new Point(150, 278);
+            buttonModifyIssue.Name = "buttonModifyIssue";
+            buttonModifyIssue.Size = new Size(75, 23);
+            buttonModifyIssue.TabIndex = 3;
+            buttonModifyIssue.Text = "Modify Issue";
+            buttonModifyIssue.UseVisualStyleBackColor = true;
+            buttonModifyIssue.Click += buttonModifyIssue_Click;
+            // 
             // tabPageCloseIssue
             // 
             tabPageCloseIssue.Controls.Add(buttonCloseIssue);
@@ -292,7 +247,7 @@ namespace IssueManagerWinFormsApp
             tabPageCloseIssue.Location = new Point(4, 24);
             tabPageCloseIssue.Name = "tabPageCloseIssue";
             tabPageCloseIssue.Padding = new Padding(3);
-            tabPageCloseIssue.Size = new Size(452, 322);
+            tabPageCloseIssue.Size = new Size(480, 320);
             tabPageCloseIssue.TabIndex = 2;
             tabPageCloseIssue.Text = "Close Issue";
             tabPageCloseIssue.UseVisualStyleBackColor = true;
@@ -318,7 +273,7 @@ namespace IssueManagerWinFormsApp
             // labelCloseIssueId
             // 
             labelCloseIssueId.AutoSize = true;
-            labelCloseIssueId.Location = new Point(10, 19);
+            labelCloseIssueId.Location = new Point(13, 22);
             labelCloseIssueId.Name = "labelCloseIssueId";
             labelCloseIssueId.Size = new Size(50, 15);
             labelCloseIssueId.TabIndex = 0;
@@ -335,7 +290,7 @@ namespace IssueManagerWinFormsApp
             tabPageExportIssues.Location = new Point(4, 24);
             tabPageExportIssues.Name = "tabPageExportIssues";
             tabPageExportIssues.Padding = new Padding(3);
-            tabPageExportIssues.Size = new Size(452, 322);
+            tabPageExportIssues.Size = new Size(480, 320);
             tabPageExportIssues.TabIndex = 3;
             tabPageExportIssues.Text = "Export Issue";
             tabPageExportIssues.UseVisualStyleBackColor = true;
@@ -343,7 +298,7 @@ namespace IssueManagerWinFormsApp
             // labelExportIssueId
             // 
             labelExportIssueId.AutoSize = true;
-            labelExportIssueId.Location = new Point(10, 20);
+            labelExportIssueId.Location = new Point(13, 23);
             labelExportIssueId.Name = "labelExportIssueId";
             labelExportIssueId.Size = new Size(50, 15);
             labelExportIssueId.TabIndex = 0;
@@ -352,7 +307,7 @@ namespace IssueManagerWinFormsApp
             // labelExportFilePath
             // 
             labelExportFilePath.AutoSize = true;
-            labelExportFilePath.Location = new Point(10, 50);
+            labelExportFilePath.Location = new Point(13, 53);
             labelExportFilePath.Name = "labelExportFilePath";
             labelExportFilePath.Size = new Size(71, 15);
             labelExportFilePath.TabIndex = 1;
@@ -403,7 +358,7 @@ namespace IssueManagerWinFormsApp
             tabPageImportIssues.Location = new Point(4, 24);
             tabPageImportIssues.Name = "tabPageImportIssues";
             tabPageImportIssues.Padding = new Padding(3);
-            tabPageImportIssues.Size = new Size(480, 322);
+            tabPageImportIssues.Size = new Size(480, 320);
             tabPageImportIssues.TabIndex = 4;
             tabPageImportIssues.Text = "Import Issues";
             tabPageImportIssues.UseVisualStyleBackColor = true;
@@ -411,7 +366,7 @@ namespace IssueManagerWinFormsApp
             // labelImportFilePath
             // 
             labelImportFilePath.AutoSize = true;
-            labelImportFilePath.Location = new Point(10, 15);
+            labelImportFilePath.Location = new Point(13, 18);
             labelImportFilePath.Name = "labelImportFilePath";
             labelImportFilePath.Size = new Size(94, 15);
             labelImportFilePath.TabIndex = 0;
@@ -449,12 +404,16 @@ namespace IssueManagerWinFormsApp
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(488, 350);
+            ClientSize = new Size(488, 372);
             Controls.Add(tabControlMain);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
             MaximizeBox = false;
             Name = "MainForm";
             Text = "MainForm";
             Load += MainForm_Load;
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             tabControlMain.ResumeLayout(false);
             tabPageAddIssue.ResumeLayout(false);
             tabPageAddIssue.PerformLayout();
@@ -467,6 +426,39 @@ namespace IssueManagerWinFormsApp
             tabPageImportIssues.ResumeLayout(false);
             tabPageImportIssues.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
+
+        private TabControl tabControlMain;
+        private TabPage tabPageAddIssue;
+        private Label labelDescription;
+        private Button buttonAddIssue;
+        private TextBox textBoxIssueDescription;
+        private TextBox textBoxIssueTitle;
+        private Label labelTitle;
+        private TabPage tabPageModifyIssue;
+        private TextBox textBoxModifyIssueId;
+        private TextBox textBoxNewIssueDescription;
+        private TextBox textBoxNewIssueTitle;
+        private Label labelModifyIssueId;
+        private Label labelNewIssueDescription;
+        private Label labelNewIssueTitle;
+        private Button buttonModifyIssue;
+        private TabPage tabPageCloseIssue;
+        private Button buttonCloseIssue;
+        private TextBox textBoxCloseIssueId;
+        private Label labelCloseIssueId;
+        private TabPage tabPageExportIssues;
+        private Label labelExportIssueId;
+        private Label labelExportFilePath;
+        private TextBox textBoxExportIssueId;
+        private TextBox textBoxExportFilePath;
+        private Button buttonBrowseExportFilePath;
+        private Button buttonExportIssue;
+        private TabPage tabPageImportIssues;
+        private Label labelImportFilePath;
+        private TextBox textBoxImportFilePath;
+        private Button buttonBrowseImportFilePath;
+        private Button buttonImportIssues;
     }
 }

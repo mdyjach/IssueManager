@@ -4,6 +4,7 @@ namespace IssueManagerWinFormsApp
 {
     public partial class ServiceSetupForm : Form
     {
+        private GitServiceProvider provider;
         public GitService GitService { get; private set; }
 
         public ServiceSetupForm()
@@ -13,7 +14,6 @@ namespace IssueManagerWinFormsApp
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
-            GitServiceProvider provider = GitServiceProvider.GitHub;
             switch (comboBoxService.SelectedItem)
             {
                 case "GitHub":
@@ -29,17 +29,38 @@ namespace IssueManagerWinFormsApp
             httpClient.BaseAddress = new Uri(repositoryUrl);
 
             GitServiceFactory gitServiceFactory = new GitServiceFactory();
-            GitService gitService = gitServiceFactory.CreateGitService((IssueManagerLibrary.GitServiceProvider)provider, httpClient, textBoxUsername.Text, textBoxProjectName.Text, textBoxAccessToken.Text);
+            GitService gitService = gitServiceFactory.CreateGitService(provider, httpClient, textBoxUsername.Text, textBoxProjectName.Text, textBoxAccessToken.Text);
 
             GitService = gitService;
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+
+        public void SetcomboBoxService(GitServiceProvider provider)
+        {
+            this.provider = provider;
+            comboBoxService.SelectedItem = (int)provider;
+        }
+
+        public void SetTextBoxUsername(string username)
+        {
+            textBoxUsername.Text = username;
+        }
+
+        public void SetTextBoxProjectName(string projectName)
+        {
+            textBoxProjectName.Text = projectName;
+        }
+
+        public void SetTextBoxAccessToken(string accessToken)
+        {
+            textBoxAccessToken.Text = accessToken;
         }
     }
 }
