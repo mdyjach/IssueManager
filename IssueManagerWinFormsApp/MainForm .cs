@@ -7,25 +7,22 @@ namespace IssueManagerWinFormsApp
     public partial class MainForm : Form
     {
         private GitService _gitService;
-        private ServiceSetupForm _serviceSetupForm; 
+        private ServiceSetupForm _serviceSetupForm;
 
         public MainForm()
         {
             InitializeComponent();
+            EnableControls(false);
+            EnableButtons(false);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             _serviceSetupForm = new ServiceSetupForm();
             CreateService();
-            EnableAddIssueButton(false);
-            EnableModifyIssueButton(false);
-            EnableCloseIssueButton(false);
-            EnableExportIssueButton(false);
-            EnableImportIssueButton(false);
         }
 
-        private bool CreateService()
+        private void CreateService()
         {
             try
             {
@@ -47,18 +44,16 @@ namespace IssueManagerWinFormsApp
                     _serviceSetupForm.SetTextBoxUsername(parameters.User);
                     _serviceSetupForm.SetTextBoxProjectName(parameters.Repo);
                     _serviceSetupForm.SetTextBoxAccessToken(parameters.Token);
-            }
+                }
                 else
                 {
                     ShowServiceSetupForm();
                 }
-
-                return readed;
+                EnableControls(true);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error reading parameters: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
             }
         }
 
@@ -67,7 +62,7 @@ namespace IssueManagerWinFormsApp
         {
             if (_serviceSetupForm.ShowDialog() == DialogResult.OK)
             {
-                _gitService =  _serviceSetupForm.GitService;
+                _gitService = _serviceSetupForm.GitService;
                 this.Visible = true;
             }
             else
@@ -92,6 +87,24 @@ namespace IssueManagerWinFormsApp
             {
                 MessageBox.Show("Git service is not set up. Please set up the service first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void EnableControls(bool enable)
+        {
+            EnableAddIssueControls(enable);
+            EnableModifyIssueControls(enable);
+            EnableCloseIssueControls(enable);
+            EnableExportIssueControls(enable);
+            EnableImportIssueControls(enable);
+        }
+
+        private void EnableButtons(bool enable)
+        {
+            EnableAddIssueButton(enable);
+            EnableModifyIssueButton(enable);
+            EnableCloseIssueButton(enable);
+            EnableExportIssueButton(enable);
+            EnableImportIssueButton(enable);
         }
 
         public void ClearIssueDetails()
@@ -125,7 +138,6 @@ namespace IssueManagerWinFormsApp
 
         public void EnableAddIssueControls(bool enable)
         {
-            buttonAddIssue.Enabled = enable;
             textBoxIssueTitle.Enabled = enable;
             textBoxIssueDescription.Enabled = enable;
         }
@@ -161,7 +173,6 @@ namespace IssueManagerWinFormsApp
 
         public void EnableModifyIssueControls(bool enable)
         {
-            buttonModifyIssue.Enabled = enable;
             textBoxModifyIssueId.Enabled = enable;
             textBoxNewIssueTitle.Enabled = enable;
             textBoxNewIssueDescription.Enabled = enable;
@@ -203,7 +214,6 @@ namespace IssueManagerWinFormsApp
 
         public void EnableCloseIssueControls(bool enable)
         {
-            buttonCloseIssue.Enabled = enable;
             textBoxCloseIssueId.Enabled = enable;
         }
 
@@ -233,7 +243,6 @@ namespace IssueManagerWinFormsApp
 
         public void EnableExportIssueControls(bool enable)
         {
-            buttonExportIssue.Enabled = enable;
             textBoxExportIssueId.Enabled = enable;
             textBoxExportFilePath.Enabled = enable;
             buttonBrowseExportFilePath.Enabled = enable;
@@ -293,7 +302,6 @@ namespace IssueManagerWinFormsApp
 
         public void EnableImportIssueControls(bool enable)
         {
-            buttonImportIssues.Enabled = enable;
             textBoxImportFilePath.Enabled = enable;
             buttonBrowseImportFilePath.Enabled = enable;
         }
@@ -336,5 +344,13 @@ namespace IssueManagerWinFormsApp
         }
 
         #endregion ImportIssue
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using(AboutBox aboutBox = new AboutBox())
+            {
+                aboutBox.ShowDialog();
+            }
+        }
     }
 }

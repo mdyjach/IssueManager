@@ -56,6 +56,8 @@ namespace IssueManagerWinFormsApp
             textBoxImportFilePath = new TextBox();
             buttonBrowseImportFilePath = new Button();
             buttonImportIssues = new Button();
+            helpToolStripMenuItem = new ToolStripMenuItem();
+            aboutToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             tabControlMain.SuspendLayout();
             tabPageAddIssue.SuspendLayout();
@@ -75,13 +77,13 @@ namespace IssueManagerWinFormsApp
             // serviceSetupToolStripMenuItem
             // 
             serviceSetupToolStripMenuItem.Name = "serviceSetupToolStripMenuItem";
-            serviceSetupToolStripMenuItem.Size = new Size(180, 22);
+            serviceSetupToolStripMenuItem.Size = new Size(144, 22);
             serviceSetupToolStripMenuItem.Text = "Service Setup";
             serviceSetupToolStripMenuItem.Click += serviceSetupToolStripMenuItem_Click;
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, helpToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(488, 24);
@@ -112,7 +114,7 @@ namespace IssueManagerWinFormsApp
             tabPageAddIssue.Location = new Point(4, 24);
             tabPageAddIssue.Name = "tabPageAddIssue";
             tabPageAddIssue.Padding = new Padding(3);
-            tabPageAddIssue.Size = new Size(480, 298);
+            tabPageAddIssue.Size = new Size(480, 320);
             tabPageAddIssue.TabIndex = 0;
             tabPageAddIssue.Text = "Add Issue";
             tabPageAddIssue.UseVisualStyleBackColor = true;
@@ -400,6 +402,20 @@ namespace IssueManagerWinFormsApp
             buttonImportIssues.UseVisualStyleBackColor = true;
             buttonImportIssues.Click += buttonImportIssues_Click;
             // 
+            // helpToolStripMenuItem
+            // 
+            helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { aboutToolStripMenuItem });
+            helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            helpToolStripMenuItem.Size = new Size(44, 20);
+            helpToolStripMenuItem.Text = "Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            aboutToolStripMenuItem.Size = new Size(180, 22);
+            aboutToolStripMenuItem.Text = "About";
+            aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -460,5 +476,7 @@ namespace IssueManagerWinFormsApp
         private TextBox textBoxImportFilePath;
         private Button buttonBrowseImportFilePath;
         private Button buttonImportIssues;
+        private ToolStripMenuItem helpToolStripMenuItem;
+        private ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
