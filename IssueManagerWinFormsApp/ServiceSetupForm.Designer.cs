@@ -35,7 +35,6 @@
             comboBoxService.Name = "comboBoxService";
             comboBoxService.Size = new Size(183, 23);
             comboBoxService.TabIndex = 0;
-            comboBoxService.SelectedIndex = 0;
             // 
             // labelUsername
             // 

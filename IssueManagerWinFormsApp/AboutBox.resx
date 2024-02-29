@@ -600,7 +600,4 @@
         cJWw3xX9u6JfoPW7on9X9Ku1flf074p+tdbviv5d0a/S+r//+/8BPTxUq6Ub7iwAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="textBoxDescription.Text" xml:space="preserve">
-    <value>The application allows managing issues in Git repositories on GitHub and GitLab. The project features a 2 user interfaces in the form of a console application and WinFroms app, which requires providing data such as the repository name, project name, and access token for proper functioning. The access token needs to be generated from the user's account on the respective service and granted permissions to manage issues.</value>
-  </data>
 </root>

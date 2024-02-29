@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="IssueManagerWinFormsApp" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="GitHubConfigFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\confGitHub.json</Value>
+    </Setting>
+    <Setting Name="GitLabConfigFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\confGitLab.json</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

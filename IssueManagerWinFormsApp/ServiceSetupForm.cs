@@ -5,7 +5,7 @@ namespace IssueManagerWinFormsApp
     public partial class ServiceSetupForm : Form
     {
         private GitServiceProvider provider;
-        public GitService GitService { get; private set; }
+        internal GitService GitService { get; private set; }
 
         public ServiceSetupForm()
         {
@@ -45,7 +45,7 @@ namespace IssueManagerWinFormsApp
         public void SetcomboBoxService(GitServiceProvider provider)
         {
             this.provider = provider;
-            comboBoxService.SelectedItem = (int)provider;
+            comboBoxService.SelectedIndex = (int)provider;
         }
 
         public void SetTextBoxUsername(string username)

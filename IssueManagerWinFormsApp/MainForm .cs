@@ -1,5 +1,6 @@
 ﻿using IssueManagerLibrary;
 using IssueManagerWinFormsApp.IssueOperation;
+using System.Globalization;
 
 
 namespace IssueManagerWinFormsApp
@@ -8,6 +9,7 @@ namespace IssueManagerWinFormsApp
     {
         private GitService _gitService;
         private ServiceSetupForm _serviceSetupForm;
+        private LanguageSelectionForm _languageSelectionForm;
 
         public MainForm()
         {
@@ -19,20 +21,41 @@ namespace IssueManagerWinFormsApp
         private void MainForm_Load(object sender, EventArgs e)
         {
             _serviceSetupForm = new ServiceSetupForm();
+            _languageSelectionForm = new LanguageSelectionForm();
             CreateService();
+        }
+
+        private void SetCulture(string cultureName)
+        {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cultureName);
         }
 
         private void CreateService()
         {
+            CreateServiceFromFile();
+            if (_gitService == null || !_gitService.IsValid)
+            {
+                ShowServiceSetupFormAtStart();
+            }
+        }
+
+        private void CreateServiceFromFile()
+        {
             try
             {
-                ServiceParameters parameters;
-                //bool readed = ServiceParameters.ReadParametersFromFile(@"D:\confGitHub.json", out parameters);
-                bool readed = ServiceParameters.ReadParametersFromFile(@"D:\confGitLab.json", out parameters);
-
-                if (readed && parameters != null)
+                ServiceParameters? parameters = null;
+                Settings settings = new Settings();
+                if (File.Exists(settings.GitHubConfigFilePath))
                 {
+                    ServiceParameters.ReadParametersFromFile(settings.GitHubConfigFilePath, out parameters);
+                }
+                else if (File.Exists(settings.GitLabConfigFilePath))
+                {
+                    ServiceParameters.ReadParametersFromFile(settings.GitLabConfigFilePath, out parameters);
+                }
 
+                if (parameters != null)
+                {
                     HttpClient httpClient = new HttpClient();
                     string repositoryUrl = GitServiceProviderHelper.GetRepositoryUrl(parameters.GtService, parameters.User, parameters.Repo);
                     httpClient.BaseAddress = new Uri(repositoryUrl);
@@ -44,12 +67,9 @@ namespace IssueManagerWinFormsApp
                     _serviceSetupForm.SetTextBoxUsername(parameters.User);
                     _serviceSetupForm.SetTextBoxProjectName(parameters.Repo);
                     _serviceSetupForm.SetTextBoxAccessToken(parameters.Token);
+
+                    EnableControls(_gitService != null && _gitService.IsValid);
                 }
-                else
-                {
-                    ShowServiceSetupForm();
-                }
-                EnableControls(true);
             }
             catch (Exception ex)
             {
@@ -57,37 +77,59 @@ namespace IssueManagerWinFormsApp
             }
         }
 
+        #region controls actions
 
-        private void ShowServiceSetupForm()
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_serviceSetupForm.ShowDialog() == DialogResult.OK)
+            Application.Exit();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (AboutBox aboutBox = new AboutBox())
+            {
+                aboutBox.ShowDialog();
+            }
+        }
+
+        private DialogResult ShowServiceSetupForm()
+        {
+            DialogResult result = _serviceSetupForm.ShowDialog();
+
+            if (result == DialogResult.OK)
             {
                 _gitService = _serviceSetupForm.GitService;
-                this.Visible = true;
+                EnableControls(_gitService != null && _gitService.IsValid);
             }
-            else
+
+            return result;
+        }
+
+        private void serviceSetupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowServiceSetupForm();
+        }
+
+        private void ShowServiceSetupFormAtStart()
+        {
+            if (ShowServiceSetupForm() == DialogResult.Cancel)
             {
                 Application.Exit();
             }
         }
 
-        private void serviceSetupToolStripMenuItem_Click(object sender, EventArgs e)
+        private void languageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _serviceSetupForm.ShowDialog();
-            _gitService = _serviceSetupForm.GitService;
+
+            if (_languageSelectionForm.ShowDialog() == DialogResult.OK)
+            {
+                SetCulture(_languageSelectionForm.SelectedLanguage);
+            }
         }
 
-        private async Task ExecuteOperation(IOperation operation)
-        {
-            if (_gitService != null)
-            {
-                await operation.Execute(_gitService);
-            }
-            else
-            {
-                MessageBox.Show("Git service is not set up. Please set up the service first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        #endregion controls actions
+
+        #region set comonents enable and clear
 
         private void EnableControls(bool enable)
         {
@@ -127,6 +169,22 @@ namespace IssueManagerWinFormsApp
 
             //import issue
             textBoxImportFilePath.Text = string.Empty;
+        }
+
+        #endregion set comonents enable and clear
+
+        #region service operationns
+
+        private async Task ExecuteOperation(IOperation operation)
+        {
+            if (_gitService != null)
+            {
+                await operation.Execute(_gitService);
+            }
+            else
+            {
+                MessageBox.Show(Resources.GitServiceNotSetUp, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         #region AddIssue
@@ -345,12 +403,6 @@ namespace IssueManagerWinFormsApp
 
         #endregion ImportIssue
 
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using(AboutBox aboutBox = new AboutBox())
-            {
-                aboutBox.ShowDialog();
-            }
-        }
+        #endregion service operationns
     }
 }

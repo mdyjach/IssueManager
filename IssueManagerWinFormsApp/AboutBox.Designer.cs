@@ -139,7 +139,7 @@
             textBoxDescription.Size = new Size(316, 147);
             textBoxDescription.TabIndex = 23;
             textBoxDescription.TabStop = false;
-            textBoxDescription.Text = resources.GetString("textBoxDescription.Text");
+            textBoxDescription.Text = "Description";
             // 
             // okButton
             // 
@@ -168,7 +168,7 @@
             ShowIcon = false;
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterParent;
-            Text = "AboutBox1";
+            Text = "AboutBox";
             tableLayoutPanel.ResumeLayout(false);
             tableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)logoPictureBox).EndInit();

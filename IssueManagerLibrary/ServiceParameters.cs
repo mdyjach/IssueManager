@@ -9,7 +9,7 @@ namespace IssueManagerLibrary
         public required string Repo { get; set; }
         public required string Token { get; set; }
 
-        public static bool ReadParametersFromFile(string filePath, out ServiceParameters parameters)
+        public static void ReadParametersFromFile(string filePath, out ServiceParameters? parameters)
         {
             try
             {
@@ -17,13 +17,10 @@ namespace IssueManagerLibrary
                 {
                     string json = File.ReadAllText(filePath);
                     parameters = JsonConvert.DeserializeObject<ServiceParameters>(json);
-
-                    return true;
                 }
                 else
                 {
                     parameters = null;
-                    return false;
                 }
             }
             catch (Exception ex)

@@ -12,6 +12,16 @@ namespace IssueManagerLibrary
         protected readonly string _repositoryUrl;
         protected readonly string _accessToken;
 
+        public bool IsValid
+        {
+            get
+            {
+                bool urlIsValid = Uri.TryCreate(_repositoryUrl, UriKind.Absolute, out Uri result)
+                      && (result.Scheme == Uri.UriSchemeHttp || result.Scheme == Uri.UriSchemeHttps);
+                return urlIsValid && !string.IsNullOrEmpty(_accessToken);
+            }
+        }
+
         public GitService(HttpClient httpClient, string repositoryUrl, string accessToken)
         {
             _httpClient = httpClient;
