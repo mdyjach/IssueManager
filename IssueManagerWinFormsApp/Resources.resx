@@ -127,4 +127,41 @@
   <data name="Version" xml:space="preserve">
     <value>Version</value>
   </data>
+  <data name="AddIssue" xml:space="preserve">
+    <value>Add Issue</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description:</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title:</value>
+  </data>
+  <data name="ModifyIssue" xml:space="preserve">
+    <value>Modify Issue</value>
+  </data>
+  <data name="IssueId" xml:space="preserve">
+    <value>Issue ID:</value>
+  </data>
+  <data name="CloseIssue" xml:space="preserve">
+    <value>Close Issue</value>
+  </data>
+  <data name="ExportIssue" xml:space="preserve">
+    <value>Export Issue</value>
+  </data>
+  <data name="ExportPath" xml:space="preserve">
+    <value>Export Path:</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="ImportIssues" xml:space="preserve">
+    <value>Import Issues</value>
+  </data>
+  <data name="ImportFilePath" xml:space="preserve">
+    <value>Import File Path:</value>
+  </data>
+  <data name="AppDescription" xml:space="preserve">
+    <value>The application allows managing issues in Git repositories on GitHub and GitLab. The project features a 2 user interfaces in the form of a console application and WinFroms app, which requires providing data such as the repository name, project name, and access token for proper functioning. The access token needs to be generated from the user's account on the respective service and granted permissions to manage issues.
+</value>
+  </data>
 </root>

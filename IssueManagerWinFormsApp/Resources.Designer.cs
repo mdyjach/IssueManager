@@ -70,6 +70,43 @@ namespace IssueManagerWinFormsApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Issue.
+        /// </summary>
+        internal static string AddIssue {
+            get {
+                return ResourceManager.GetString("AddIssue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The application allows managing issues in Git repositories on GitHub and GitLab. The project features a 2 user interfaces in the form of a console application and WinFroms app, which requires providing data such as the repository name, project name, and access token for proper functioning. The access token needs to be generated from the user&apos;s account on the respective service and granted permissions to manage issues.
+        ///.
+        /// </summary>
+        internal static string AppDescription {
+            get {
+                return ResourceManager.GetString("AppDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close Issue.
+        /// </summary>
+        internal static string CloseIssue {
+            get {
+                return ResourceManager.GetString("CloseIssue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description:.
+        /// </summary>
+        internal static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         internal static string Error {
@@ -84,6 +121,33 @@ namespace IssueManagerWinFormsApp {
         internal static string Exit {
             get {
                 return ResourceManager.GetString("Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export.
+        /// </summary>
+        internal static string Export {
+            get {
+                return ResourceManager.GetString("Export", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export Issue.
+        /// </summary>
+        internal static string ExportIssue {
+            get {
+                return ResourceManager.GetString("ExportIssue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export Path:.
+        /// </summary>
+        internal static string ExportPath {
+            get {
+                return ResourceManager.GetString("ExportPath", resourceCulture);
             }
         }
         
@@ -115,11 +179,47 @@ namespace IssueManagerWinFormsApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import File Path:.
+        /// </summary>
+        internal static string ImportFilePath {
+            get {
+                return ResourceManager.GetString("ImportFilePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Issues.
+        /// </summary>
+        internal static string ImportIssues {
+            get {
+                return ResourceManager.GetString("ImportIssues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Issue ID:.
+        /// </summary>
+        internal static string IssueId {
+            get {
+                return ResourceManager.GetString("IssueId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         internal static string Language {
             get {
                 return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modify Issue.
+        /// </summary>
+        internal static string ModifyIssue {
+            get {
+                return ResourceManager.GetString("ModifyIssue", resourceCulture);
             }
         }
         
@@ -138,6 +238,15 @@ namespace IssueManagerWinFormsApp {
         internal static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title:.
+        /// </summary>
+        internal static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
         

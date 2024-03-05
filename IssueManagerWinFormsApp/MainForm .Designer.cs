@@ -80,14 +80,14 @@ namespace IssueManagerWinFormsApp
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(180, 22);
+            exitToolStripMenuItem.Size = new Size(93, 22);
             exitToolStripMenuItem.Text = Resources.Exit;
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // serviceSetupToolStripMenuItem
             // 
             serviceSetupToolStripMenuItem.Name = "serviceSetupToolStripMenuItem";
-            serviceSetupToolStripMenuItem.Size = new Size(180, 22);
+            serviceSetupToolStripMenuItem.Size = new Size(144, 22);
             serviceSetupToolStripMenuItem.Text = Resources.ServiceSetup;
             serviceSetupToolStripMenuItem.Click += serviceSetupToolStripMenuItem_Click;
             // 
@@ -96,7 +96,7 @@ namespace IssueManagerWinFormsApp
             menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, settingsToolStripMenuItem, helpToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(488, 24);
+            menuStrip1.Size = new Size(586, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -110,7 +110,7 @@ namespace IssueManagerWinFormsApp
             // languageToolStripMenuItem
             // 
             languageToolStripMenuItem.Name = "languageToolStripMenuItem";
-            languageToolStripMenuItem.Size = new Size(180, 22);
+            languageToolStripMenuItem.Size = new Size(144, 22);
             languageToolStripMenuItem.Text = Resources.Language;
             languageToolStripMenuItem.Click += languageToolStripMenuItem_Click;
             // 
@@ -139,7 +139,7 @@ namespace IssueManagerWinFormsApp
             tabControlMain.Location = new Point(0, 24);
             tabControlMain.Name = "tabControlMain";
             tabControlMain.SelectedIndex = 0;
-            tabControlMain.Size = new Size(488, 348);
+            tabControlMain.Size = new Size(586, 348);
             tabControlMain.TabIndex = 1;
             // 
             // tabPageAddIssue
@@ -152,9 +152,9 @@ namespace IssueManagerWinFormsApp
             tabPageAddIssue.Location = new Point(4, 24);
             tabPageAddIssue.Name = "tabPageAddIssue";
             tabPageAddIssue.Padding = new Padding(3);
-            tabPageAddIssue.Size = new Size(480, 320);
+            tabPageAddIssue.Size = new Size(578, 320);
             tabPageAddIssue.TabIndex = 0;
-            tabPageAddIssue.Text = "Add Issue";
+            tabPageAddIssue.Text = Resources.AddIssue;
             tabPageAddIssue.UseVisualStyleBackColor = true;
             // 
             // labelDescription
@@ -164,7 +164,7 @@ namespace IssueManagerWinFormsApp
             labelDescription.Name = "labelDescription";
             labelDescription.Size = new Size(70, 15);
             labelDescription.TabIndex = 5;
-            labelDescription.Text = "Description:";
+            labelDescription.Text = Resources.Description;
             // 
             // buttonAddIssue
             // 
@@ -172,7 +172,7 @@ namespace IssueManagerWinFormsApp
             buttonAddIssue.Name = "buttonAddIssue";
             buttonAddIssue.Size = new Size(75, 23);
             buttonAddIssue.TabIndex = 3;
-            buttonAddIssue.Text = "Add Issue";
+            buttonAddIssue.Text = Resources.AddIssue;
             buttonAddIssue.UseVisualStyleBackColor = true;
             buttonAddIssue.Click += buttonAddIssue_Click;
             // 
@@ -199,7 +199,7 @@ namespace IssueManagerWinFormsApp
             labelTitle.Name = "labelTitle";
             labelTitle.Size = new Size(32, 15);
             labelTitle.TabIndex = 0;
-            labelTitle.Text = "Title:";
+            labelTitle.Text = Resources.Title;
             // 
             // tabPageModifyIssue
             // 
@@ -213,9 +213,9 @@ namespace IssueManagerWinFormsApp
             tabPageModifyIssue.Location = new Point(4, 24);
             tabPageModifyIssue.Name = "tabPageModifyIssue";
             tabPageModifyIssue.Padding = new Padding(3);
-            tabPageModifyIssue.Size = new Size(480, 320);
+            tabPageModifyIssue.Size = new Size(578, 320);
             tabPageModifyIssue.TabIndex = 1;
-            tabPageModifyIssue.Text = "Modify Issue";
+            tabPageModifyIssue.Text = Resources.ModifyIssue;
             tabPageModifyIssue.UseVisualStyleBackColor = true;
             // 
             // textBoxModifyIssueId
@@ -258,7 +258,7 @@ namespace IssueManagerWinFormsApp
             labelNewIssueDescription.Name = "labelNewIssueDescription";
             labelNewIssueDescription.Size = new Size(70, 15);
             labelNewIssueDescription.TabIndex = 4;
-            labelNewIssueDescription.Text = "Description:";
+            labelNewIssueDescription.Text = Resources.Description;
             // 
             // labelNewIssueTitle
             // 
@@ -267,7 +267,7 @@ namespace IssueManagerWinFormsApp
             labelNewIssueTitle.Name = "labelNewIssueTitle";
             labelNewIssueTitle.Size = new Size(32, 15);
             labelNewIssueTitle.TabIndex = 0;
-            labelNewIssueTitle.Text = "Title:";
+            labelNewIssueTitle.Text = Resources.Title;
             // 
             // buttonModifyIssue
             // 
@@ -275,7 +275,7 @@ namespace IssueManagerWinFormsApp
             buttonModifyIssue.Name = "buttonModifyIssue";
             buttonModifyIssue.Size = new Size(75, 23);
             buttonModifyIssue.TabIndex = 3;
-            buttonModifyIssue.Text = "Modify Issue";
+            buttonModifyIssue.Text = Resources.ModifyIssue;
             buttonModifyIssue.UseVisualStyleBackColor = true;
             buttonModifyIssue.Click += buttonModifyIssue_Click;
             // 
@@ -287,9 +287,9 @@ namespace IssueManagerWinFormsApp
             tabPageCloseIssue.Location = new Point(4, 24);
             tabPageCloseIssue.Name = "tabPageCloseIssue";
             tabPageCloseIssue.Padding = new Padding(3);
-            tabPageCloseIssue.Size = new Size(480, 320);
+            tabPageCloseIssue.Size = new Size(578, 320);
             tabPageCloseIssue.TabIndex = 2;
-            tabPageCloseIssue.Text = "Close Issue";
+            tabPageCloseIssue.Text = Resources.CloseIssue;
             tabPageCloseIssue.UseVisualStyleBackColor = true;
             // 
             // buttonCloseIssue
@@ -298,7 +298,7 @@ namespace IssueManagerWinFormsApp
             buttonCloseIssue.Name = "buttonCloseIssue";
             buttonCloseIssue.Size = new Size(90, 25);
             buttonCloseIssue.TabIndex = 2;
-            buttonCloseIssue.Text = "Close Issue";
+            buttonCloseIssue.Text = Resources.CloseIssue;
             buttonCloseIssue.UseVisualStyleBackColor = true;
             buttonCloseIssue.Click += buttonCloseIssue_Click;
             // 
@@ -330,9 +330,9 @@ namespace IssueManagerWinFormsApp
             tabPageExportIssues.Location = new Point(4, 24);
             tabPageExportIssues.Name = "tabPageExportIssues";
             tabPageExportIssues.Padding = new Padding(3);
-            tabPageExportIssues.Size = new Size(480, 320);
+            tabPageExportIssues.Size = new Size(578, 320);
             tabPageExportIssues.TabIndex = 3;
-            tabPageExportIssues.Text = "Export Issue";
+            tabPageExportIssues.Text = Resources.ExportIssue;
             tabPageExportIssues.UseVisualStyleBackColor = true;
             // 
             // labelExportIssueId
@@ -365,13 +365,13 @@ namespace IssueManagerWinFormsApp
             // 
             textBoxExportFilePath.Location = new Point(150, 50);
             textBoxExportFilePath.Name = "textBoxExportFilePath";
-            textBoxExportFilePath.Size = new Size(282, 23);
+            textBoxExportFilePath.Size = new Size(287, 23);
             textBoxExportFilePath.TabIndex = 3;
             textBoxExportFilePath.TextChanged += textBoxExportControls_Changed;
             // 
             // buttonBrowseExportFilePath
             // 
-            buttonBrowseExportFilePath.Location = new Point(438, 50);
+            buttonBrowseExportFilePath.Location = new Point(443, 49);
             buttonBrowseExportFilePath.Name = "buttonBrowseExportFilePath";
             buttonBrowseExportFilePath.Size = new Size(30, 23);
             buttonBrowseExportFilePath.TabIndex = 5;
@@ -385,7 +385,7 @@ namespace IssueManagerWinFormsApp
             buttonExportIssue.Name = "buttonExportIssue";
             buttonExportIssue.Size = new Size(75, 23);
             buttonExportIssue.TabIndex = 4;
-            buttonExportIssue.Text = "Export";
+            buttonExportIssue.Text = Resources.Export;
             buttonExportIssue.UseVisualStyleBackColor = true;
             buttonExportIssue.Click += buttonExportIssue_Click;
             // 
@@ -398,9 +398,9 @@ namespace IssueManagerWinFormsApp
             tabPageImportIssues.Location = new Point(4, 24);
             tabPageImportIssues.Name = "tabPageImportIssues";
             tabPageImportIssues.Padding = new Padding(3);
-            tabPageImportIssues.Size = new Size(480, 320);
+            tabPageImportIssues.Size = new Size(578, 320);
             tabPageImportIssues.TabIndex = 4;
-            tabPageImportIssues.Text = "Import Issues";
+            tabPageImportIssues.Text = Resources.ImportIssues;
             tabPageImportIssues.UseVisualStyleBackColor = true;
             // 
             // labelImportFilePath
@@ -436,7 +436,7 @@ namespace IssueManagerWinFormsApp
             buttonImportIssues.Name = "buttonImportIssues";
             buttonImportIssues.Size = new Size(100, 23);
             buttonImportIssues.TabIndex = 3;
-            buttonImportIssues.Text = "Import Issues";
+            buttonImportIssues.Text = Resources.ImportIssues;
             buttonImportIssues.UseVisualStyleBackColor = true;
             buttonImportIssues.Click += buttonImportIssues_Click;
             // 
@@ -444,7 +444,7 @@ namespace IssueManagerWinFormsApp
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(488, 372);
+            ClientSize = new Size(586, 372);
             Controls.Add(tabControlMain);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;

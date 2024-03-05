@@ -58,7 +58,7 @@ namespace IssueManagerWinFormsApp
                 {
                     return "";
                 }
-                return ((AssemblyDescriptionAttribute)attributes[0]).Description;
+                return Resources.AppDescription;
             }
         }
 
